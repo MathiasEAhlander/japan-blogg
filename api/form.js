@@ -1,12 +1,17 @@
 import { connectToDatabase } from "../lib/database.js";
-
+import { checkPassword } from "../lib/password.js";
 
 export default async function handler(req, res) {
     try {
 
         if (req.method === "POST") {
+            if (!checkPassword(req.body.password))
+            {
+                res.status(401).send("incorrect password");
+                return;
+            }
             const db = await connectToDatabase();
-
+            const blogs = db.collection("blogs");
             // put recieved data into variables
             const title = req.body.title;
             const author = req.body.author;
@@ -24,7 +29,17 @@ export default async function handler(req, res) {
             // if (mm < 10) mm = '0' + mm;
 
             // const datePublished = yyyy + '/' + mm + '/' + dd;
-
+            const blog = {
+                title: title,
+                author: author,
+                date: date,
+                location: location,
+                content: content,
+                timestamp: timestamp
+            };
+            await blogs.insertOne(blog);
+            res.status(200).send("blog added!");
+            
         }
         else {
             res.status(501).send("only POST method is available");
