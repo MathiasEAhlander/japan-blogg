@@ -5,9 +5,10 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Japan Blogg NTIG T4-22</title>
+		<script defer src=main.js></script>
 	</head>
 	<body>
-		<h1>Titkle</h1>
+		<h1>Title</h1>
 		<!-- NAVIGATION BAR STARTS -->
 		<nav>
 			<a href="#HOME">HOME</a> | 
@@ -18,17 +19,13 @@
 			<a href="#MAKE_NEW_BLOG_POST">+</a>  
 		</nav>
 		<!-- NAVIGATION BAR ENDS -->
-		<div class="content" style="border-style:solid">
-			<div class="Title" style="border-style:solid">
-				<h2>Title</h2>
-				<h3>date, location</h3>
-			</div>
-			<div class="text" style="border-style:solid">
-				main text
-			</div>
-			<div class="author" style="border-style:solid;">
-				Author, time of writing
+		<div class="content" id="blogContainer">
 			</div>
 		</div>
 	</body>
+	<style>
+		.blogItem{
+			border-style: solid;
+		}
+	</style>
 </html>
