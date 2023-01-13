@@ -7,19 +7,23 @@ export default async function handler(req, res) {
 			const db = await connectToDatabase();
 			const blogsDB = db.collection("blogs");
 			const blogs = await blogsDB.find({}).toArray();
-			let imgArray = [];
+			let blogImgs = [];
 			blogs.forEach((blog) => {
 				blog.content.forEach((element) => {
 					if (
 						element.type === "img" &&
-						!imgArray.find((img) => img.path === element.path)
+						!blogImgs.find((img) => img.path === element.path)
 					) {
-						imgArray.push(element);
+						blogImgs.push(element);
 					}
 				});
 			});
-			const filePaths = getImages();
-			res.status(200).send(imgArray);
+
+			const miscImgs = getImages();
+			
+            const allImg = Array.prototype.concat(blogImgs, miscImgs);
+            
+            res.status(200).send(allImg);
 		} else {
 			res.status(501).send("only GET method is allowed");
 		}
