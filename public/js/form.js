@@ -41,6 +41,7 @@ function addParagraf() {
   let rmButton = document.createElement("button");
   rmButton.setAttribute("type", "button");
   rmButton.setAttribute("onclick", "removeElement(event)");
+  rmButton.setAttribute("class", "RMElementButton");
   rmButton.append("Remove Element");
 
   div.appendChild(rmButton);
@@ -83,6 +84,7 @@ function addIMG() {
   let rmButton = document.createElement("button");
   rmButton.setAttribute("type", "button");
   rmButton.setAttribute("onclick", "removeElement(event)");
+  rmButton.setAttribute("class", "RMElementButton");
   rmButton.append("Remove Element");
 
   div.appendChild(rmButton);
